@@ -1,12 +1,15 @@
-const Card = () => {
+const Card = (props) => {
   return (
     <div className="card">
-      <img src="https://source.unsplash.com/random" alt="unsplash random image" />
-      <h2>Title</h2>
-      <button>close</button>
-      <button>-</button>
-      <span className="material-symbols-outlined">mood</span>
-      <button>+</button>
+      <span class="material-symbols-outlined">close</span>
+      <p id="cardName">Name: {props.name}</p>
+      <p id="cardType">Type: {props.type}</p>
+      <img src="https://source.unsplash.com/400x400/?fox" alt="picture" />
+      <p id="cardLikes">
+        <span class="material-symbols-outlined">thumb_up</span>
+        Placeholder for likes
+        <span class="material-symbols-outlined">thumb_down</span>
+      </p>
     </div>
   );
 };
