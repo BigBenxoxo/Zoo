@@ -1,5 +1,5 @@
 export const animals = [
-  { name: 'alligator', likes: 0 },
+  { name: 'alligator', likes: 0 }, //In this object, "name" is the property, and 'alligator' is the value assigned to that property.
   { name: 'alpaca', likes: 0 },
   { name: 'ant', likes: 0 },
   { name: 'anteater', likes: 0 },
