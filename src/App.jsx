@@ -16,9 +16,24 @@ function App() {
     // This triggers a re-render of the component with the updated state,   effectively removing the specified animal from the list.
   };
   const [search, setSearch] = useState("");
-  const searchHandler = (e) => {
-    // Why is this = (e)
-    setSearch(e.target.value);
+  const searchHandler = (event) => {
+    // Why is this = (event) what does event mean / how does it know what an event is?
+    setSearch(event.target.value);
+  };
+
+  const likesHandler = (name, action) => {
+    const updatedArray = animalList.map((animal) => {
+      if (animal.name === name) {
+        if (action === "add") {
+          return { ...animal, likes: animal.likes + 1 };
+        } else {
+          return { ...animal, likes: animal.likes - 1 };
+        }
+      } else {
+        return animal;
+      }
+    });
+    setAnimals(updatedArray);
   };
 
   return (
@@ -34,6 +49,8 @@ function App() {
             )
             .map((animal) => (
               <Card
+                addLikes={() => likesHandler(animal.name, "add")}
+                removeLikes={() => likesHandler(animal.name, "remove")}
                 key={animal.name}
                 {...animal}
                 click={() => removeHandler(animal.name)} //WHY DOES removeHandler need the animal.name argument here, when that is defined inside the removeHandler function itself? Send all animal object to the child component, so child (Card) can read properties as props name={animal.name} likes={animal.likes}
