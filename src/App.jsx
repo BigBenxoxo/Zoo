@@ -1,8 +1,13 @@
 import { useState } from "react";
-import Header from "./Header";
+import Header from "./components/Header";
 import Footer from "./Footer";
-import Card from "./Card";
+import Card from "./components/Card";
 import { animals } from "./animalsList";
+import Home from "./pages/Home";
+import Root from "./pages/Root";
+import Animals from "./pages/Animals";
+import ErrorPage from "./pages/ErrorPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
   const [animalList, setAnimals] = useState(animals); //this is the state, because if we want to re-render (meaning update or refresh to see changes), it can be done only by state.
@@ -13,7 +18,7 @@ function App() {
     // It iterates through each element in animalList and only includes elements where the animal's name is not equal to the specified name.
 
     // The setAnimals function is then called with the updatedArray as an argument.
-    // This triggers a re-render of the component with the updated state,   effectively removing the specified animal from the list.
+    // This triggers a re-render of the component with the updated state, effectively removing the specified animal from the list.
   };
   const [search, setSearch] = useState("");
   const searchHandler = (event) => {
@@ -36,29 +41,32 @@ function App() {
     setAnimals(updatedArray);
   };
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <ErrorPage />,
+      children: [
+        { path: "/", element: <Home></Home> },
+        {
+          path: "/animals",
+          element: (
+            <Animals
+              searchHandler={searchHandler}
+              removeHandler={removeHandler}
+              search={search}
+              animalList={animalList}
+              likesHandler={likesHandler}
+            />
+          ),
+        },
+      ],
+    },
+  ]);
+
   return (
     <>
-      <Header />
-      <main>
-        <input type="text" onChange={searchHandler} />
-        <h1>Ben's Zoo</h1>
-        <div className="cards">
-          {animalList
-            .filter((animal) =>
-              animal.name.toLowerCase().includes(search.toLowerCase())
-            )
-            .map((animal) => (
-              <Card
-                addLikes={() => likesHandler(animal.name, "add")}
-                removeLikes={() => likesHandler(animal.name, "remove")}
-                key={animal.name}
-                {...animal}
-                click={() => removeHandler(animal.name)} //WHY DOES removeHandler need the animal.name argument here, when that is defined inside the removeHandler function itself? Send all animal object to the child component, so child (Card) can read properties as props name={animal.name} likes={animal.likes}
-              />
-            ))}
-        </div>
-      </main>
-      <Footer />
+      <RouterProvider router={router} />
     </>
   );
 }
