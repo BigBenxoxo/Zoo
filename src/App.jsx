@@ -1,16 +1,20 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./Footer";
-import Card from "./components/Card";
 import { animals } from "./animalsList";
+import { birds } from "./animalsList";
 import Home from "./pages/Home";
 import Root from "./pages/Root";
+import About from "./pages/About";
 import Animals from "./pages/Animals";
+import Birds from "./pages/Birds";
 import ErrorPage from "./pages/ErrorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
   const [animalList, setAnimals] = useState(animals); //this is the state, because if we want to re-render (meaning update or refresh to see changes), it can be done only by state.
+  const [birdList, setBirds] = useState(birds);
+
   const removeHandler = (name) => {
     // the (name) is the parameter here.
     const updatedArray = animalList.filter((animal) => animal.name !== name);
@@ -19,6 +23,10 @@ function App() {
 
     // The setAnimals function is then called with the updatedArray as an argument.
     // This triggers a re-render of the component with the updated state, effectively removing the specified animal from the list.
+  };
+  const removeBirdHandler = (name) => {
+    const updatedArray = birdList.filter((bird) => bird.name !== name);
+    setBirds(updatedArray);
   };
   const [search, setSearch] = useState("");
   const searchHandler = (event) => {
@@ -41,6 +49,21 @@ function App() {
     setAnimals(updatedArray);
   };
 
+  const likesBirdHandler = (name, action) => {
+    const updatedArray = birdList.map((bird) => {
+      if (bird.name === name) {
+        if (action === "add") {
+          return { ...bird, likes: bird.likes + 1 };
+        } else {
+          return { ...bird, likes: bird.likes - 1 };
+        }
+      } else {
+        return bird;
+      }
+    });
+    setBirds(updatedArray);
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -57,6 +80,20 @@ function App() {
               search={search}
               animalList={animalList}
               likesHandler={likesHandler}
+            />
+          ),
+        },
+
+        { path: "/about", element: <About></About> },
+        {
+          path: "/birds",
+          element: (
+            <Birds
+              searchHandler={searchHandler}
+              removeBirdHandler={removeBirdHandler}
+              search={search}
+              birdList={birdList}
+              likesBirdHandler={likesBirdHandler} // why do these 2 have to be named the same, why cant the first be named something else?
             />
           ),
         },
