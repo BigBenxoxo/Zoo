@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
+import taco from "../assets/Taco.png";
+import fossekall from "../assets/Fossekall.jpeg";
 
 function Home() {
   return (
     <>
-      <h1>Ben's Zoo</h1>
-      <h1>Two big images with links to animals and birds will be here</h1>
-      <Link to="/animals">Animals</Link>
-      <Link to="/birds">Birds</Link>
+      <div className="frontImages">
+        <Link to="/animals">
+          <img className="frontImg1" src={taco} alt="Dog" />
+        </Link>
+        <Link to="/birds">
+          <img className="frontImg2" src={fossekall} alt="Bird" />
+        </Link>
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import Card from "../components/Card.jsx";
-
+import Header from "../components/Header.jsx";
 function Birds({
   birdList,
   searchHandler,
@@ -22,7 +22,7 @@ function Birds({
               removeLikes={() => likesBirdHandler(bird.name, "remove")}
               key={bird.name}
               {...bird}
-              click={() => removeBirdHandler(bird.name)} //WHY DOES removeHandler need the animal.name argument here, when that is defined inside the removeHandler function itself? Send all animal object to the child component, so child (Card) can read properties as props name={animal.name} likes={animal.likes}
+              click={() => removeBirdHandler(bird.name)} // Send all animal object to the child component, so child (Card) can read properties as props name={animal.name} likes={animal.likes}
             />
           ))}
       </div>

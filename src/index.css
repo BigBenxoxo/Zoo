@@ -36,3 +36,28 @@ body {
   
 }
 
+.frontImages {
+  display: grid;
+  grid-template-columns:repeat(2, 1fr);
+  position: relative;
+  text-align: center;
+  
+}
+
+.frontImg1 {
+
+  width: auto;
+  height: 100%;
+}
+
+.frontImg2 {
+
+  width: auto;
+  height: 100%;
+}
+
+
+
+
+
+
