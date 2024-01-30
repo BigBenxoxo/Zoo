@@ -92,7 +92,7 @@ function App() {
               removeBirdHandler={removeBirdHandler}
               search={search}
               birdList={birdList}
-              likesBirdHandler={likesBirdHandler} // why do these 2 have to be named the same, why cant the first be named something else?
+              likesBirdHandler={likesBirdHandler}
             />
           ),
         },

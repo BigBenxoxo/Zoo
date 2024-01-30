@@ -10,21 +10,17 @@ const Card = (props) => {
       />
       <p id="cardName">{props.name}</p>
       <div className="card_desc">
-        <button onClick={props.removeLikes}>
+        <button className="btnminus" onClick={props.removeLikes}>
           <span className="material-symbols-outlined">heart_minus</span>
         </button>
         <div className="likes_container">
           <p className="likes">{props.likes}</p>
-          <span className="material-icons">
-            {props.likes >= 0 ? "favorite" : "heart_broken"}
-          </span>
         </div>
         <p>{props.fox}</p>
-        <button onClick={props.addLikes}>
+        <button className="btnplus" onClick={props.addLikes}>
           <span className="material-symbols-outlined">heart_plus</span>
         </button>
       </div>
-      ;
     </div>
   );
 };

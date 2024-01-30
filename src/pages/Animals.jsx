@@ -23,7 +23,7 @@ function Animals({
               removeLikes={() => likesHandler(animal.name, "remove")}
               key={animal.name}
               {...animal}
-              click={() => removeHandler(animal.name)} //WHY DOES removeHandler need the animal.name argument here, when that is defined inside the removeHandler function itself? Send all animal object to the child component, so child (Card) can read properties as props name={animal.name} likes={animal.likes}
+              click={() => removeHandler(animal.name)} // Send all animal object to the child component, so child (Card) can read properties as props name={animal.name} likes={animal.likes}
             />
           ))}
       </div>
