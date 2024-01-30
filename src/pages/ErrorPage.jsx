@@ -4,6 +4,7 @@ function ErrorPage() {
   const error = useRouteError();
   return (
     <>
+      <Header />
       <h1>God damnit!</h1>
       <p>{error.statusText || error.message} </p>
     </>

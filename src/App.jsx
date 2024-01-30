@@ -30,7 +30,6 @@ function App() {
   };
   const [search, setSearch] = useState("");
   const searchHandler = (event) => {
-    // Why is this = (event) what does event mean / how does it know what an event is?
     setSearch(event.target.value);
   };
 

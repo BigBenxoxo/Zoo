@@ -1,4 +1,5 @@
 import Card from "../components/Card.jsx";
+import Header from "../components/Header.jsx";
 
 function Animals({
   animalList,
@@ -9,7 +10,7 @@ function Animals({
 }) {
   return (
     <>
-      <h1>Ben's Zoo</h1>
+      <Header />
       <input type="text" onChange={searchHandler} />
       <div className="cards">
         {animalList

@@ -3,7 +3,9 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <header>
-      *link*<h1>Ben's Zoo</h1>
+      <NavLink to="/">
+        <h1>Ben's Zoo</h1>
+      </NavLink>
       <nav>
         <ul>
           <li>

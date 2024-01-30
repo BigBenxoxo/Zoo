@@ -9,7 +9,7 @@ function Birds({
 }) {
   return (
     <>
-      <h1>Ben's Zoo</h1>
+      <Header />
       <input type="text" onChange={searchHandler} />
       <div className="cards">
         {birdList
